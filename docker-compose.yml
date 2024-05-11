@@ -1,0 +1,11 @@
+version: "1.0"
+
+services:
+  optl-collector:
+    container_name: optl-collector
+    build:
+      context: opentelemetry/
+    ports:
+      - 4318:4318 # OTLP http receiver
+    volumes:
+      - ./opentelemetry/config/otel-collector-config.yaml:/etc/otelcol-contrib/config.yaml
