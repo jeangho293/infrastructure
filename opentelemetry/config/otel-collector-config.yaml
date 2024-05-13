@@ -7,6 +7,10 @@ receivers:
 exporters:
   debug:
     verbosity: detailed
+  zipkin:
+    endpoint: "http://zipkin:9411/api/v2/spans"
+    tls:
+      insecure: true
   otlp/elastic:
     endpoint: "http://host.docker.internal:8200" # service name으로 하니까 여기선 안된다...
     tls:
@@ -16,4 +20,4 @@ service:
   pipelines:
     traces:
       receivers: [otlp]
-      exporters: [debug, otlp/elastic]
+      exporters: [debug, otlp/elastic, zipkin]

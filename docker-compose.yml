@@ -1,6 +1,14 @@
 version: "1.0"
 
 services:
+  # zipkin
+  zipkin:
+    container_name: zipkin
+    image: openzipkin/zipkin
+    ports:
+      - 9411:9411
+
+  # optl
   optl-collector:
     container_name: optl-collector
     build:
