@@ -1,13 +1,14 @@
 apm-server:
-  host: "localhost:8200"
-  rum:
-    enabled: true
+  host: "127.0.0.1:8200"
 
   kibana:
     enabled: true
     host: "http://kibana:5601"
     username: "elastic"
     password: "supertheo"
-
+    ssl:
+      enabled: false
+  ssl:
+    enabled: false
 output.console:
   pretty: true
