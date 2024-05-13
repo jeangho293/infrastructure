@@ -113,6 +113,7 @@ services:
     depends_on:
       - elasticsearch
     restart: unless-stopped
+
   apm-server:
     build:
       context: apm-server/
