@@ -1,6 +1,16 @@
 version: "1.0"
 
 services:
+  nginx:
+    container_name: nginx
+    build:
+      context: nginx/
+      platforms:
+        - "linux/amd64"
+    volumes:
+      - ./nginx/opentelemetry_module.conf:/etc/nginx/conf.d/opentelemetry_module.conf
+    ports:
+      - 8080:80
   # zipkin
   zipkin:
     container_name: zipkin
@@ -14,6 +24,7 @@ services:
     build:
       context: opentelemetry/
     ports:
+      - 4317:4317 # OTLP gRPC receiver
       - 4318:4318 # OTLP http receiver
     volumes:
       - ./opentelemetry/config/otel-collector-config.yaml:/etc/otelcol-contrib/config.yaml
