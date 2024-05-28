@@ -128,3 +128,10 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# pem
+root-ca.pem
+admin-key.pem
+admin.pem
+node1-key.pem
+node1.pem

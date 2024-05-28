@@ -158,6 +158,16 @@ services:
     volumes:
       - opensearch:/usr/share/opensearch/data:Z
 
+      # Custom certificates
+      - ./opensearch/config/root-ca.pem:/usr/share/opensearch/config/root-ca.pem:ro
+      - ./opensearch/config/node1.pem:/usr/share/opensearch/config/node1.pem:ro
+      - ./opensearch/config/node1-key.pem:/usr/share/opensearch/config/node1-key.pem:ro
+      - ./opensearch/config/admin.pem:/usr/share/opensearch/config/admin.pem:ro
+      - ./opensearch/config/admin-key.pem:/usr/share/opensearch/config/admin-key.pem:ro
+
+      # Custom configuration
+      - ./opensearch/config/opensearch.yml:/usr/share/opensearch/config/opensearch.yml:ro
+
     environment:
       - cluster.name=opensearch-cluster # Name the cluster
       - node.name=opensearch-node1 # Name the node that will run in this container
@@ -166,6 +176,7 @@ services:
       - bootstrap.memory_lock=true # Disable JVM heap memory swapping
       - "OPENSEARCH_JAVA_OPTS=-Xms512m -Xmx512m" # Set min and max JVM heap sizes to at least 50% of system RAM
       - OPENSEARCH_INITIAL_ADMIN_PASSWORD=${OPENSEARCH_INITIAL_ADMIN_PASSWORD}
+      - "DISABLE_INSTALL_DEMO_CONFIG=true" # Prevents execution of bundled demo script which installs demo certificates and security configurations to OpenSearch
     ulimits:
       memlock:
         soft: -1
