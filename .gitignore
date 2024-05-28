@@ -135,3 +135,5 @@ admin-key.pem
 admin.pem
 node1-key.pem
 node1.pem
+kirk.pem
+kirk-key.pem

@@ -157,6 +157,8 @@ services:
         OPENSEARCH_VERSION: ${OPENSEARCH_VERSION}
     volumes:
       - opensearch:/usr/share/opensearch/data:Z
+      # Metadata file
+      - ./opensearch/config/opensearch-security/GoogleIDPMetadata.xml:/usr/share/opensearch/config/opensearch-security/GoogleIDPMetadata.xml:ro
 
       # Custom certificates
       - ./opensearch/config/root-ca.pem:/usr/share/opensearch/config/root-ca.pem:ro
@@ -164,9 +166,12 @@ services:
       - ./opensearch/config/node1-key.pem:/usr/share/opensearch/config/node1-key.pem:ro
       - ./opensearch/config/admin.pem:/usr/share/opensearch/config/admin.pem:ro
       - ./opensearch/config/admin-key.pem:/usr/share/opensearch/config/admin-key.pem:ro
+      - ./opensearch/config/kirk.pem:/usr/share/opensearch/config/kirk.pem:ro
+      - ./opensearch/config/kirk-key.pem:/usr/share/opensearch/config/kirk-key.pem:ro
 
       # Custom configuration
       - ./opensearch/config/opensearch.yml:/usr/share/opensearch/config/opensearch.yml:ro
+      - ./opensearch/config/opensearch-security/config.yml:/usr/share/opensearch/config/opensearch-security/config.yml:ro
 
     environment:
       - cluster.name=opensearch-cluster # Name the cluster
