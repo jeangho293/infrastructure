@@ -1,0 +1,34 @@
+_meta:
+  type: "config"
+  config_version: 2
+
+config:
+  dynamic:
+    authc:
+      basic_internal_auth_domain:
+        http_enabled: true
+        transport_enabled: true
+        order: 0
+        http_authenticator:
+          type: "basic"
+          challenge: false
+        authentication_backend:
+          type: "intern"
+      saml_auth_domain:
+        http_enabled: true
+        transport_enabled: true
+        order: 1
+        http_authenticator:
+          type: "saml"
+          challenge: true
+          config:
+            idp:
+              metadata_file: "/usr/share/opensearch/config/opensearch-security/GoogleIDPMetadata.xml"
+              entity_id: "https://accounts.google.com/o/saml2/idp?idpid=C02rm8eah"
+            sp:
+              entity_id: "opensearch-dashboards"
+            kibana_url: "https://115b-220-70-6-59.ngrok-free.app"
+            roles_key: "Roles"
+            exchange_key: "9a2h8ajasdfhsdiydfn7dtd6d5ashsd89a2h8ajasdHhsdiyLfn7dtd6d5ashsdI"
+        authentication_backend:
+          type: "noop"
